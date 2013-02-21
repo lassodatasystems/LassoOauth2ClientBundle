@@ -1,0 +1,28 @@
+{
+    "name": "lasso/oauth2-client-bundle",
+    "description": "Access APIs protected by the oauth2 authentication scheme",
+    "type": "symfony-bundle",
+    "keywords": [
+        "oauth", "client", "api", "Symfony2"
+    ],
+    "homepage": "https://github.com/lassodatasystems",
+    "license": "BSD-3-Clause",
+    "require": {
+        "adoy/PHP_OAuth2": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/adoy/PHP-OAuth2.git"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Lasso\\Oauth2ClientBundle": "" }
+    },
+    "target-dir": "Lasso/Oauth2ClientBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
