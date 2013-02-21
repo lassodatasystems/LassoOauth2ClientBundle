@@ -8,12 +8,12 @@
     "homepage": "https://github.com/lassodatasystems",
     "license": "BSD-3-Clause",
     "require": {
-        "adoy/PHP_OAuth2": "dev-master"
+        "keeguon/oauth2-php": "dev-master"
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/adoy/PHP-OAuth2.git"
+            "url": "https://github.com/Keeguon/oauth2-php.git"
         }
     ],
     "autoload": {
