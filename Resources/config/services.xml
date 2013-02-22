@@ -5,20 +5,22 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="lasso_oauth2_client.client.class">>Lasso\Oauth2ClientBundle\Token</parameter>
-        <parameter key="lasso_oauth2_client.token.class">Lasso\Oauth2ClientBundle\Client</parameter>
+        <parameter key="lasso_oauth2_client.client.class">Lasso\Oauth2ClientBundle\Client</parameter>
+        <parameter key="lasso_oauth2_client.token.class">Lasso\Oauth2ClientBundle\Token</parameter>
     </parameters>
     <services>
+        <service id="lasso_oauth2_client.buzz.browser" class="Buzz\Browser" factory-service="buzz" factory-method="getBrowser">
+            <argument>browser</argument>
+        </service>
         <service id="lasso_oauth2_client.token" class="%lasso_oauth2_client.token.class%">
             <argument>lasso_oauth2_client.client_id</argument>
             <argument>lasso_oauth2_client.client_secret</argument>
             <argument>lasso_oauth2_client.token_url</argument>
-            <argument>%buzz.class%</argument>
+            <argument type="service" id="lasso_oauth2_client.buzz.browser"/>
         </service>
         <service id="lasso_oauth2_client.client" class="%lasso_oauth2_client.client.class%">
-            <argument type="service">%lasso_oauth2_client.token%</argument>
-            <argument>%buzz.class%</argument>
+            <argument type="service" id="lasso_oauth2_client.token"/>
+            <argument type="service" id="lasso_oauth2_client.buzz.browser"/>
         </service>
     </services>
 </container>
-

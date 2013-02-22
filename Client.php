@@ -3,8 +3,7 @@ namespace Lasso\Oauth2ClientBundle;
 
 
 use Lasso\Oauth2ClientBundle;
-use Buzz;
-
+use Buzz\Browser;
 
 class Client
 {

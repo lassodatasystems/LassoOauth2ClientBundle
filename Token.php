@@ -1,9 +1,7 @@
 <?php
 namespace Lasso\Oauth2ClientBundle;
 
-
-use Buzz;
-
+use Buzz\Browser;
 
 class Token
 {
@@ -16,7 +14,7 @@ class Token
     public function __construct($clientId,
                                 $clientSecret,
                                 $tokenUrl,
-                                $browser)
+                                Browser $browser)
     {
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
