@@ -5,17 +5,19 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="oauth2_client.client.class">OAuth2\Client</parameter>
-        <parameter key="lasso_oauth2_client_factory.class">Lasso\Oauth2ClientBundle\Factory</parameter>
+        <parameter key="lasso_oauth2_client.client.class">>Lasso\Oauth2ClientBundle\Token</parameter>
+        <parameter key="lasso_oauth2_client.token.class">Lasso\Oauth2ClientBundle\Client</parameter>
     </parameters>
     <services>
-        <service id="lasso_oauth2_client.client"
-                 class="%lasso_oauth2_client.client.class%"
-                 factory-service="%lasso_oauth2_client_factory.class%"
-                 factory-method="get">
-            <argument>%lasso_oauth2_client.client_id%</argument>
-            <argument>%lasso_oauth2_client.client_secret%</argument>
-            <argument>%lasso_oauth2_client.token_url%</argument>
+        <service id="lasso_oauth2_client.token" class="%lasso_oauth2_client.token.class%">
+            <argument>lasso_oauth2_client.client_id</argument>
+            <argument>lasso_oauth2_client.client_secret</argument>
+            <argument>lasso_oauth2_client.token_url</argument>
+            <argument>%buzz.class%</argument>
+        </service>
+        <service id="lasso_oauth2_client.client" class="%lasso_oauth2_client.client.class%">
+            <argument type="service">%lasso_oauth2_client.token%</argument>
+            <argument>%buzz.class%</argument>
         </service>
     </services>
 </container>

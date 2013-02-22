@@ -8,14 +8,8 @@
     "homepage": "https://github.com/lassodatasystems",
     "license": "BSD-3-Clause",
     "require": {
-        "keeguon/oauth2-php": "dev-master"
+        "juliendidier/buzz-bundle": "dev-master"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Keeguon/oauth2-php.git"
-        }
-    ],
     "autoload": {
         "psr-0": { "Lasso\\Oauth2ClientBundle": "" }
     },
