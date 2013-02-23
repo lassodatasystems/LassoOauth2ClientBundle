@@ -13,9 +13,9 @@
             <argument>browser</argument>
         </service>
         <service id="lasso_oauth2_client.token" class="%lasso_oauth2_client.token.class%">
-            <argument>lasso_oauth2_client.client_id</argument>
-            <argument>lasso_oauth2_client.client_secret</argument>
-            <argument>lasso_oauth2_client.token_url</argument>
+            <argument>%lasso_oauth2.client_id%</argument>
+            <argument>%lasso_oauth2.client_secret%</argument>
+            <argument>%lasso_oauth2.token_url%</argument>
             <argument type="service" id="lasso_oauth2_client.buzz.browser"/>
         </service>
         <service id="lasso_oauth2_client.client" class="%lasso_oauth2_client.client.class%">
