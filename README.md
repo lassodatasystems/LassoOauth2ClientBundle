@@ -24,11 +24,14 @@ functions being available.
 
 Only the Bearer-Token authentication is supported, as it fulfills our needs - but
 it's a very simple and less secure method than the HMAC authentication scheme also
-supported by oauth2.
+supported by oauth2. An extension of this bundle to support HMAC would be nice,
+but is not a high priority for us.
 
 Three-legged authentication is not supported and not the intend of this bundle. If
 you wish to use three legged authentication, you should probably look at other
 clients. If you insist on using this bundle, you would have to implement your own
-authentication mechanism to retrieve an authentication token.
+authentication mechanism to retrieve an authentication token. You could then write
+your own Token class which has the public method 'getToken()', and pass that into
+the client constructor.
 
 [![Build Status](https://travis-ci.org/lassodatasystems/LassoOauth2ClientBundle.png?branch=master)](https://travis-ci.org/lassodatasystems/LassoOauth2ClientBundle)
