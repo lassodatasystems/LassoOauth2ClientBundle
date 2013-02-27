@@ -21,10 +21,5 @@
     "autoload": {
         "psr-0": { "Lasso\\Oauth2ClientBundle": "" }
     },
-    "target-dir": "Lasso/Oauth2ClientBundle",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.1-dev"
-        }
-    }
+    "target-dir": "Lasso/Oauth2ClientBundle"
 }
