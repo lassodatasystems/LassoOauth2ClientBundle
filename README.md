@@ -6,7 +6,7 @@ authentication, or provided minimal functionality, didn't integrate with Symfony
 well or had other drawbacks.
 
 We decided to write a very simple wrapper around the popular Buzz Browser using
-the [Buzz Browser Bundle](https://github.com/juliendidier/BuzzProfilerBundle). Our
+the [Buzz Browser Bundle](https://github.com/juliendidier/BuzzBundle). Our
 client simply retrieves an oauth2 access token and injects it into the header of requests
 and hands them off to the Buzz Browser.
 
