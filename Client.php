@@ -1,7 +1,6 @@
 <?php
 namespace Lasso\Oauth2ClientBundle;
 
-
 use Lasso\Oauth2ClientBundle;
 use Buzz\Browser;
 use Buzz\Message\RequestInterface;
