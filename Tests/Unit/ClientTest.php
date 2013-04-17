@@ -2,7 +2,6 @@
 namespace Lasso\Oauth2ClientBundle\Tests;
 
 require dirname(__FILE__) . '/../../Client.php';
-require 'MockBuzz.php';
 
 use Lasso\Oauth2ClientBundle\Client;
 use PHPUnit_Framework_TestCase;
