@@ -43,7 +43,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
      */
     public function httpMethodWrappersShouldCallWithCorrectHttpMethod()
     {
-        foreach (['get', 'post', 'head', 'patch', 'put', 'delete'] as $method) {
+        foreach (['GET', 'POST', 'HEAD', 'PATCH', 'PUT', 'DELETE'] as $method) {
             $browser = $this->createBrowserMockThatExpectsHttpMethod($method);
 
             $client = new Client($this->token, $browser);
@@ -87,7 +87,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
      */
     public function sendAddsAuthorizationHeaderLineToHeaders()
     {
-        $request = $this->getMock('Buzz\Message\RequestInterface', ['addHeader']);
+        $request = $this->getMockForAbstractClass('Buzz\Message\RequestInterface', ['addHeader']);
         $request->expects($this->once())
             ->method('addHeader')
             ->with('Authorization: Bearer test_token');
