@@ -11,35 +11,29 @@
         <parameter key="lasso_oauth2_client.client_factory.class">Lasso\Oauth2ClientBundle\ClientFactory</parameter>
     </parameters>
     <services>
-        <service id="lasso_oauth2_client.buzz.browser"
-                 class="Buzz\Browser"
-                 factory-service="buzz"
-                 factory-method="getBrowser">
-            <argument>browser</argument>
-        </service>
         <service id="lasso_oauth2_client.token"
                  class="%lasso_oauth2_client.token.class%">
             <argument>%lasso_oauth2.client_id%</argument>
             <argument>%lasso_oauth2.client_secret%</argument>
             <argument>%lasso_oauth2.token_url%</argument>
-            <argument type="service" id="lasso_oauth2_client.buzz.browser"/>
+            <argument type="service" id="buzz"/>
         </service>
         <service id="lasso_oauth2_client.client"
                  class="%lasso_oauth2_client.client.class%">
             <argument type="service" id="lasso_oauth2_client.token"/>
-            <argument type="service" id="lasso_oauth2_client.buzz.browser"/>
+            <argument type="service" id="buzz"/>
         </service>
         <service id="lasso_oauth2_client.token_factory"
                  class="%lasso_oauth2_client.token_factory.class%">
             <argument>%lasso_oauth2.client_id%</argument>
             <argument>%lasso_oauth2.client_secret%</argument>
             <argument>%lasso_oauth2.token_url%</argument>
-            <argument type="service" id="lasso_oauth2_client.buzz.browser"/>
+            <argument type="service" id="buzz"/>
         </service>
         <service id="lasso_oauth2_client.client_factory"
                  class="%lasso_oauth2_client.client_factory.class%">
             <argument type="service" id="lasso_oauth2_client.token_factory"/>
-            <argument type="service" id="lasso_oauth2_client.buzz.browser"/>
+            <argument type="service" id="buzz"/>
         </service>
     </services>
 </container>
