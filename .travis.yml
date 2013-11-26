@@ -2,4 +2,4 @@ language: php
 php:
     - 5.4
 
-script: phpunit .
+script: phpunit -c phpunit.xml.dist

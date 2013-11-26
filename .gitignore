@@ -5,3 +5,5 @@
 .buildpath
 .externalToolBuilders
 nbproject
+vendor
+phpunit.xml
