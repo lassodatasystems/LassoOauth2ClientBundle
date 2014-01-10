@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b51074b4ed5201384707e3a8a38c408e",
+    "hash": "d5f3c79edb6394c9d3671be9ecf3e327",
     "packages": [
         {
             "name": "kriswallsmith/buzz",
@@ -55,17 +55,17 @@
         },
         {
             "name": "sensio/buzz-bundle",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "target-dir": "Sensio/Bundle/BuzzBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioBuzzBundle.git",
-                "reference": "929c883f8d8ad7adafa36b652007af81c3c8b976"
+                "reference": "d622a26bd2c2e0d1b636f0c8a8cebda8ebf22bd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioBuzzBundle/zipball/929c883f8d8ad7adafa36b652007af81c3c8b976",
-                "reference": "929c883f8d8ad7adafa36b652007af81c3c8b976",
+                "url": "https://api.github.com/repos/sensiolabs/SensioBuzzBundle/zipball/d622a26bd2c2e0d1b636f0c8a8cebda8ebf22bd9",
+                "reference": "d622a26bd2c2e0d1b636f0c8a8cebda8ebf22bd9",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
                 "buzz",
                 "http client"
             ],
-            "time": "2013-07-11 13:03:01"
+            "time": "2013-07-10 11:22:01"
         }
     ],
     "packages-dev": [
@@ -109,9 +109,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "sensio/buzz-bundle": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": {
         "php": ">=5.4.0"
     },
