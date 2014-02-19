@@ -1,9 +1,10 @@
 <?php
-namespace Lasso\Oauth2ClientBundle\Tests;
+namespace Lasso\Oauth2ClientBundle\Tests\Unit;
 
 require dirname(__FILE__) . '/../../Client.php';
 
 use Lasso\Oauth2ClientBundle\Client;
+use Lasso\Oauth2ClientBundle\Exceptions\ClientErrorException;
 use PHPUnit_Framework_TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 
@@ -116,5 +117,35 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
         $client = new Client($this->token, $browser);
         $client->non_existant_function();
+    }
+
+    /**
+     * @expectedException ClientErrorException
+     * @test
+     */
+    public function failedRequestThrowException()
+    {
+        $requestMock = $this
+            ->getMockBuilder('Buzz\Message\Response')
+            ->setMethods(['getStatusCode'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $requestMock
+            ->expects($this->atLeastOnce())
+            ->method('getStatusCode')
+            ->will($this->returnValue(400));
+
+        $browserMock = $this
+            ->getMockBuilder('\Buzz\Browser')
+            ->disableOriginalConstructor()
+            ->setMethods(['call'])
+            ->getMock();
+        $browserMock
+            ->expects($this->atLeastOnce())
+            ->method('call')
+            ->will($this->returnValue($requestMock));
+
+        (new Client($this->token, $browserMock))
+            ->get('http://example.com/does-not-exist');
     }
 }
