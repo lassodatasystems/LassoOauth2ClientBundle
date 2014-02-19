@@ -57,6 +57,24 @@ class Client
     }
 
     /**
+     * @param Response $response
+     *
+     * @throws Exceptions\ClientErrorException
+     * @throws Exceptions\ServerErrorException
+     */
+    protected function throwExceptionOnResponseError(Response $response)
+    {
+        switch (true) {
+            case (400 <= $response->getStatusCode() && $response->getStatusCode() <= 499):
+                throw new ClientErrorException($response);
+                break;
+            case (500 <= $response->getStatusCode() && $response->getStatusCode() <= 599):
+                throw new ServerErrorException($response);
+                break;
+        }
+    }
+
+    /**
      * @see Lasso\Oauth2ClientBundle\Client::call
      *
      * @param       $url
@@ -157,14 +175,7 @@ class Client
 
         $response = $this->browser->call($url, $method, $headers, $content);
 
-        switch (true) {
-            case (400 <= $response->getStatusCode() && $response->getStatusCode() <= 499):
-                throw new ClientErrorException($response);
-                break;
-            case (500 <= $response->getStatusCode() && $response->getStatusCode() <= 599):
-                throw new ServerErrorException($response);
-                break;
-        }
+        $this->throwExceptionOnResponseError($response);
 
         return $response;
     }

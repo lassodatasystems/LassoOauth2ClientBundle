@@ -23,9 +23,40 @@ class ClientTest extends PHPUnit_Framework_TestCase
             ->will($this->returnValue('test_token'));
     }
 
-    protected function createBrowserMockThatExpectsHttpMethod($method)
+    protected function makeRequestMock($statusCode = 200)
     {
+        $requestMock = $this
+            ->getMockBuilder('Buzz\Message\Response')
+            ->setMethods(['getStatusCode'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $requestMock
+            ->expects($this->any())
+            ->method('getStatusCode')
+            ->will($this->returnValue($statusCode));
+
+        return $requestMock;
+    }
+
+    protected function makeBrowserMock($response = null)
+    {
+        if (empty($response)) {
+            $response = $this->makeRequestMock();
+        }
+
         $browser = $this->getMock('Buzz\Browser', ['call']);
+        $browser
+            ->expects($this->atLeastOnce())
+            ->method('call')
+            ->will($this->returnValue($response));
+
+        return $browser;
+    }
+
+    protected function createBrowserMockThatExpectsHttpMethod($method, $response = null)
+    {
+        $browser = $this->makeBrowserMock();
+
         $browser->expects($this->once())
             ->method('call')
             ->with(
@@ -120,32 +151,26 @@ class ClientTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException ClientErrorException
+     * @expectedException Lasso\Oauth2ClientBundle\Exceptions\ClientErrorException
      * @test
      */
-    public function failedRequestThrowException()
+    public function failedRequestThrowsException()
     {
-        $requestMock = $this
-            ->getMockBuilder('Buzz\Message\Response')
-            ->setMethods(['getStatusCode'])
-            ->disableOriginalConstructor()
-            ->getMock();
-        $requestMock
-            ->expects($this->atLeastOnce())
-            ->method('getStatusCode')
-            ->will($this->returnValue(400));
+        $browser = $this->makeBrowserMock($this->makeRequestMock(400));
+        // Will return a failed response with a 4XX error code
+        (new Client($this->token, $browser))
+            ->get('example.com');
+    }
 
-        $browserMock = $this
-            ->getMockBuilder('\Buzz\Browser')
-            ->disableOriginalConstructor()
-            ->setMethods(['call'])
-            ->getMock();
-        $browserMock
-            ->expects($this->atLeastOnce())
-            ->method('call')
-            ->will($this->returnValue($requestMock));
-
-        (new Client($this->token, $browserMock))
-            ->get('http://example.com/does-not-exist');
+    /**
+     * @expectedException Lasso\Oauth2ClientBundle\Exceptions\ServerErrorException
+     * @test
+     */
+    public function errorRequestThrowsException()
+    {
+        $browser = $this->makeBrowserMock($this->makeRequestMock(500));
+        // Will return a failed response with a 5XX error code
+        (new Client($this->token, $browser))
+            ->get('example.com');
     }
 }
