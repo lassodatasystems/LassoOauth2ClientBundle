@@ -16,24 +16,24 @@
             <argument>%lasso_oauth2.client_id%</argument>
             <argument>%lasso_oauth2.client_secret%</argument>
             <argument>%lasso_oauth2.token_url%</argument>
-            <argument type="service" id="buzz"/>
+            <argument type="service" id="buzz.browser.browser"/>
         </service>
         <service id="lasso_oauth2_client.client"
                  class="%lasso_oauth2_client.client.class%">
             <argument type="service" id="lasso_oauth2_client.token"/>
-            <argument type="service" id="buzz"/>
+            <argument type="service" id="buzz.browser.browser"/>
         </service>
         <service id="lasso_oauth2_client.token_factory"
                  class="%lasso_oauth2_client.token_factory.class%">
             <argument>%lasso_oauth2.client_id%</argument>
             <argument>%lasso_oauth2.client_secret%</argument>
             <argument>%lasso_oauth2.token_url%</argument>
-            <argument type="service" id="buzz"/>
+            <argument type="service" id="buzz.browser.browser"/>
         </service>
         <service id="lasso_oauth2_client.client_factory"
                  class="%lasso_oauth2_client.client_factory.class%">
             <argument type="service" id="lasso_oauth2_client.token_factory"/>
-            <argument type="service" id="buzz"/>
+            <argument type="service" id="buzz.browser.browser"/>
         </service>
     </services>
 </container>
