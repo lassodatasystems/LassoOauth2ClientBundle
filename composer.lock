@@ -3,27 +3,68 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d5f3c79edb6394c9d3671be9ecf3e327",
+    "hash": "3cd0ed70664836058e7e5976e776aa8e",
     "packages": [
         {
-            "name": "kriswallsmith/buzz",
-            "version": "v0.10",
+            "name": "juliendidier/buzz-bundle",
+            "version": "2.0.x-dev",
+            "target-dir": "Buzz/Bundle/BuzzBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kriswallsmith/Buzz.git",
-                "reference": "759432d66387e3433d3b06cb6f773b97225b9b17"
+                "url": "https://github.com/juliendidier/BuzzBundle.git",
+                "reference": "c83023092c27ba00a60092e46ffdcbd4048f17c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/759432d66387e3433d3b06cb6f773b97225b9b17",
-                "reference": "759432d66387e3433d3b06cb6f773b97225b9b17",
+                "url": "https://api.github.com/repos/juliendidier/BuzzBundle/zipball/c83023092c27ba00a60092e46ffdcbd4048f17c0",
+                "reference": "c83023092c27ba00a60092e46ffdcbd4048f17c0",
+                "shasum": ""
+            },
+            "require": {
+                "kriswallsmith/buzz": "0.7",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "symfony/config": "v2.0.15",
+                "symfony/dependency-injection": "v2.0.15",
+                "symfony/http-kernel": "v2.0.15"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Buzz\\Bundle\\BuzzBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Julien DIDIER",
+                    "email": "julien@jdidier.net",
+                    "homepage": "http://jdidier.net"
+                }
+            ],
+            "description": "A Symfony2 Bundle for Buzz library integration",
+            "time": "2013-09-22 13:23:34"
+        },
+        {
+            "name": "kriswallsmith/buzz",
+            "version": "v0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kriswallsmith/Buzz.git",
+                "reference": "62a5a27fcfa5569010483f0f164e67b32e6f6b80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/62a5a27fcfa5569010483f0f164e67b32e6f6b80",
+                "reference": "62a5a27fcfa5569010483f0f164e67b32e6f6b80",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
             },
             "suggest": {
                 "ext-curl": "*"
@@ -51,55 +92,7 @@
                 "curl",
                 "http client"
             ],
-            "time": "2013-05-19 03:41:15"
-        },
-        {
-            "name": "sensio/buzz-bundle",
-            "version": "v1.0.0",
-            "target-dir": "Sensio/Bundle/BuzzBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sensiolabs/SensioBuzzBundle.git",
-                "reference": "d622a26bd2c2e0d1b636f0c8a8cebda8ebf22bd9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioBuzzBundle/zipball/d622a26bd2c2e0d1b636f0c8a8cebda8ebf22bd9",
-                "reference": "d622a26bd2c2e0d1b636f0c8a8cebda8ebf22bd9",
-                "shasum": ""
-            },
-            "require": {
-                "kriswallsmith/buzz": ">= 0.6",
-                "php": ">=5.3.2"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Sensio\\Bundle\\BuzzBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marc Weistroff",
-                    "email": "marc.weistroff@sensio.com"
-                }
-            ],
-            "description": "Bundle around the Buzz HTTP client",
-            "homepage": "https://github.com/sensio/SensioBuzzBundle",
-            "keywords": [
-                "buzz",
-                "http client"
-            ],
-            "time": "2013-07-10 11:22:01"
+            "time": "2012-06-25 19:01:38"
         }
     ],
     "packages-dev": [
@@ -109,9 +102,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "juliendidier/buzz-bundle": 20
+    },
     "platform": {
         "php": ">=5.4.0"
     },

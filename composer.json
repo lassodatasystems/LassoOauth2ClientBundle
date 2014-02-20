@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "sensio/buzz-bundle": "v1.0.0"
+        "juliendidier/buzz-bundle": "2.0.x-dev"
     },
     "autoload": {
         "psr-0": { "Lasso\\Oauth2ClientBundle": "" }
