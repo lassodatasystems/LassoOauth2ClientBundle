@@ -6,6 +6,8 @@ use Buzz\Browser;
 use Buzz\Message\RequestInterface;
 use Buzz\Message\MessageInterface;
 use Buzz\Message\Response;
+use Lasso\Oauth2ClientBundle\Exceptions\ClientErrorException;
+use Lasso\Oauth2ClientBundle\Exceptions\ServerErrorException;
 
 /**
  * This class essentially mirrors the public functions on Buzz\Browser,
@@ -20,15 +22,33 @@ use Buzz\Message\Response;
  */
 class Client
 {
+    /**
+     * @var Token
+     */
     protected $token;
+
+    /**
+     * @var Browser
+     */
     protected $browser;
 
+    /**
+     * @param Token   $token
+     * @param Browser $browser
+     */
     public function __construct(Token $token, Browser $browser)
     {
-        $this->token = $token;
+        $this->token   = $token;
         $this->browser = $browser;
     }
 
+    /**
+     * Adds authorization token to headers using bearer method
+     *
+     * @param $headers
+     *
+     * @return array
+     */
     protected function patchHeaders($headers)
     {
         $headers[] = 'Authorization: Bearer ' . $this->token->getToken();
@@ -36,51 +56,128 @@ class Client
         return $headers;
     }
 
+    /**
+     * @param Response $response
+     *
+     * @throws Exceptions\ClientErrorException
+     * @throws Exceptions\ServerErrorException
+     */
+    protected function throwExceptionOnResponseError(Response $response)
+    {
+        switch (true) {
+            case (400 <= $response->getStatusCode() && $response->getStatusCode() <= 499):
+                throw new ClientErrorException($response);
+                break;
+            case (500 <= $response->getStatusCode() && $response->getStatusCode() <= 599):
+                throw new ServerErrorException($response);
+                break;
+        }
+    }
+
+    /**
+     * @see Lasso\Oauth2ClientBundle\Client::call
+     *
+     * @param       $url
+     * @param array $headers
+     *
+     * @return Response
+     */
     public function get($url, $headers = array())
     {
         return $this->call($url, RequestInterface::METHOD_GET, $headers);
     }
 
+    /**
+     * @see Lasso\Oauth2ClientBundle\Client::call
+     *
+     * @param        $url
+     * @param array  $headers
+     * @param string $content
+     *
+     * @return Response
+     */
     public function post($url, $headers = array(), $content = '')
     {
         return $this->call($url, RequestInterface::METHOD_POST, $headers, $content);
     }
 
+    /**
+     * @see Lasso\Oauth2ClientBundle\Client::call
+     *
+     * @param       $url
+     * @param array $headers
+     *
+     * @return Response
+     */
     public function head($url, $headers = array())
     {
         return $this->call($url, RequestInterface::METHOD_HEAD, $headers);
     }
 
+    /**
+     * @see Lasso\Oauth2ClientBundle\Client::call
+     *
+     * @param        $url
+     * @param array  $headers
+     * @param string $content
+     *
+     * @return Response
+     */
     public function patch($url, $headers = array(), $content = '')
     {
         return $this->call($url, RequestInterface::METHOD_PATCH, $headers, $content);
     }
 
+    /**
+     * @see Lasso\Oauth2ClientBundle\Client::call
+     *
+     * @param        $url
+     * @param array  $headers
+     * @param string $content
+     *
+     * @return Response
+     */
     public function put($url, $headers = array(), $content = '')
     {
         return $this->call($url, RequestInterface::METHOD_PUT, $headers, $content);
     }
 
+    /**
+     * @see Lasso\Oauth2ClientBundle\Client::call
+     *
+     * @param        $url
+     * @param array  $headers
+     * @param string $content
+     *
+     * @return Response
+     */
     public function delete($url, $headers = array(), $content = '')
     {
         return $this->call($url, RequestInterface::METHOD_DELETE, $headers, $content);
     }
 
     /**
-     * Sends a request.
+     * Sends a http request with the given method. Is wrapped by shorthand methods that
+     * mirror the http methods.
      *
      * @param string $url     The URL to call
      * @param string $method  The request method to use
      * @param array  $headers An array of request headers
      * @param string $content The request content
      *
+     * @throws Exceptions\ClientErrorException
+     * @throws Exceptions\ServerErrorException
      * @return Response The response object
      */
     public function call($url, $method, $headers = array(), $content = '')
     {
         $headers = $this->patchHeaders($headers);
 
-        return $this->browser->call($url, $method, $headers, $content);
+        $response = $this->browser->call($url, $method, $headers, $content);
+
+        $this->throwExceptionOnResponseError($response);
+
+        return $response;
     }
 
     /**
@@ -97,7 +194,11 @@ class Client
     {
         $headers = $this->patchHeaders($headers);
 
-        return $this->browser->submit($url, $fields, $method, $headers);
+        $response = $this->browser->submit($url, $fields, $method, $headers);
+
+        $this->throwExceptionOnResponseError($response);
+
+        return $response;
     }
 
     /**
@@ -112,15 +213,19 @@ class Client
     {
         $request->addHeader('Authorization: Bearer ' . $this->token->getToken());
 
-        return $this->browser->send($request, $response);
+        $returnResponse = $this->browser->send($request, $response);
+
+        $this->throwExceptionOnResponseError($returnResponse);
+
+        return $returnResponse;
     }
 
     /**
      * Proxy all calls that don't require injecting an Authorization-header
      * to the browser instance.
      *
-     * @param string $name The called methods name
-     * @param array $arguments The arguments the method should be called with
+     * @param string $name      The called methods name
+     * @param array  $arguments The arguments the method should be called with
      *
      * @return mixed
      */

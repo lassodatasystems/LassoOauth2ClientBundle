@@ -1,9 +1,6 @@
 <?php
 namespace Lasso\Oauth2ClientBundle\Tests;
 
-require_once dirname(__FILE__) . '/../../TokenFactory.php';
-require_once dirname(__FILE__) . '/../../ClientFactory.php';
-
 use Lasso\Oauth2ClientBundle\ClientFactory;
 use PHPUnit_Framework_TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
