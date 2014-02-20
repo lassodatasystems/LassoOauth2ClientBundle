@@ -157,8 +157,8 @@ class Client
     }
 
     /**
-     * Sends a http request with the given method. Is wrapped by helper methods in this
-     * class that
+     * Sends a http request with the given method. Is wrapped by shorthand methods that
+     * mirror the http methods.
      *
      * @param string $url     The URL to call
      * @param string $method  The request method to use
@@ -194,7 +194,11 @@ class Client
     {
         $headers = $this->patchHeaders($headers);
 
-        return $this->browser->submit($url, $fields, $method, $headers);
+        $response = $this->browser->submit($url, $fields, $method, $headers);
+
+        $this->throwExceptionOnResponseError($response);
+
+        return $response;
     }
 
     /**
@@ -209,7 +213,11 @@ class Client
     {
         $request->addHeader('Authorization: Bearer ' . $this->token->getToken());
 
-        return $this->browser->send($request, $response);
+        $returnResponse = $this->browser->send($request, $response);
+
+        $this->throwExceptionOnResponseError($returnResponse);
+
+        return $returnResponse;
     }
 
     /**

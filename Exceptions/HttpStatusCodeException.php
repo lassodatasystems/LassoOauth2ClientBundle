@@ -23,7 +23,7 @@ abstract class HttpStatusCodeException extends Exception
     {
         $this->response = $response;
 
-        $this->code = $this->response->getStatusCode();
+        $this->code    = $this->response->getStatusCode();
         $this->message = $this->response->getContent();
     }
 
