@@ -157,7 +157,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @runInSeparateProcess
-     * @preserveGlobalState disabled
      * @expectedException Lasso\Oauth2ClientBundle\Exceptions\ClientErrorException
      */
     public function clientErrorOnCallThrowsCorrectException()
@@ -171,7 +170,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @runInSeparateProcess
-     * @preserveGlobalState disabled
      * @expectedException Lasso\Oauth2ClientBundle\Exceptions\ServerErrorException
      */
     public function serverErrorOnCallThrowsCorrectException()
@@ -186,7 +184,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @runInSeparateProcess
-     * @preserveGlobalState disabled
      * @expectedException Lasso\Oauth2ClientBundle\Exceptions\ClientErrorException
      */
     public function clientErrorOnSubmitThrowsCorrectException()
@@ -200,7 +197,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @runInSeparateProcess
-     * @preserveGlobalState disabled
      * @expectedException Lasso\Oauth2ClientBundle\Exceptions\ServerErrorException
      */
     public function serverErrorOnSubmitThrowsCorrectException()
@@ -215,7 +211,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @runInSeparateProcess
-     * @preserveGlobalState disabled
      * @expectedException Lasso\Oauth2ClientBundle\Exceptions\ClientErrorException
      */
     public function clientErrorOnSendThrowsCorrectException()
@@ -234,7 +229,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @runInSeparateProcess
-     * @preserveGlobalState disabled
      * @expectedException Lasso\Oauth2ClientBundle\Exceptions\ServerErrorException
      */
     public function serverErrorOnSendThrowsCorrectException()
