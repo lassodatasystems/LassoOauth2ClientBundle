@@ -5,6 +5,11 @@ use Lasso\Oauth2ClientBundle\ClientFactory;
 use PHPUnit_Framework_TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 
+/**
+ * Class ClientFactoryTest
+ *
+ * @package Lasso\Oauth2ClientBundle\Tests
+ */
 class ClientFactoryTest extends PHPUnit_Framework_TestCase
 {
     /**

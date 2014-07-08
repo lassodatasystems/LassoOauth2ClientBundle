@@ -7,6 +7,7 @@ use Exception;
 
 /**
  * Class HttpStatusCodeException
+ *
  * @package Lasso\Oauth2ClientBundle\Exceptions
  */
 abstract class HttpStatusCodeException extends Exception

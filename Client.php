@@ -18,6 +18,7 @@ use Lasso\Oauth2ClientBundle\Exceptions\ServerErrorException;
  * Buzz\Browser to get auto-completion on all available methods.
  *
  * Class Client
+ *
  * @package Lasso\Oauth2ClientBundle
  */
 class Client
@@ -45,7 +46,7 @@ class Client
     /**
      * Adds authorization token to headers using bearer method
      *
-     * @param $headers
+     * @param array $headers
      *
      * @return array
      */
@@ -75,10 +76,10 @@ class Client
     }
 
     /**
-     * @see Lasso\Oauth2ClientBundle\Client::call
+     * @param string $url
+     * @param array  $headers
      *
-     * @param       $url
-     * @param array $headers
+     * @see Lasso\Oauth2ClientBundle\Client::call
      *
      * @return Response
      */
@@ -88,11 +89,11 @@ class Client
     }
 
     /**
-     * @see Lasso\Oauth2ClientBundle\Client::call
-     *
-     * @param        $url
+     * @param string $url
      * @param array  $headers
      * @param string $content
+     *
+     * @see Lasso\Oauth2ClientBundle\Client::call
      *
      * @return Response
      */
@@ -102,10 +103,10 @@ class Client
     }
 
     /**
-     * @see Lasso\Oauth2ClientBundle\Client::call
+     * @param string $url
+     * @param array  $headers
      *
-     * @param       $url
-     * @param array $headers
+     * @see Lasso\Oauth2ClientBundle\Client::call
      *
      * @return Response
      */
@@ -115,11 +116,11 @@ class Client
     }
 
     /**
-     * @see Lasso\Oauth2ClientBundle\Client::call
-     *
-     * @param        $url
+     * @param string $url
      * @param array  $headers
      * @param string $content
+     *
+     * @see Lasso\Oauth2ClientBundle\Client::call
      *
      * @return Response
      */
@@ -129,11 +130,11 @@ class Client
     }
 
     /**
-     * @see Lasso\Oauth2ClientBundle\Client::call
-     *
-     * @param        $url
+     * @param string $url
      * @param array  $headers
      * @param string $content
+     *
+     * @see Lasso\Oauth2ClientBundle\Client::call
      *
      * @return Response
      */
@@ -143,11 +144,11 @@ class Client
     }
 
     /**
-     * @see Lasso\Oauth2ClientBundle\Client::call
-     *
-     * @param        $url
+     * @param string $url
      * @param array  $headers
      * @param string $content
+     *
+     * @see Lasso\Oauth2ClientBundle\Client::call
      *
      * @return Response
      */

@@ -22,8 +22,7 @@ class LassoOauth2ClientExtension extends Extension
         $configuration = new Configuration();
         $config        = $this->processConfiguration($configuration, $configs);
 
-        $parameterBag = $container->getParameterBag();
-        foreach($config as $key => $value) {
+        foreach ($config as $key => $value) {
             $container->setParameter(
                 'lasso_oauth2.' . $key,
                 $container->getParameterBag()->resolveValue($value)
