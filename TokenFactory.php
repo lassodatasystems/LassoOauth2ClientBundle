@@ -5,6 +5,11 @@ use Lasso\Oauth2ClientBundle\Token;
 use Buzz\Browser;
 use StdClass;
 
+/**
+ * Class TokenFactory
+ *
+ * @package Lasso\Oauth2ClientBundle
+ */
 class TokenFactory
 {
     /**
@@ -24,6 +29,12 @@ class TokenFactory
     protected $tokenConfig;
     protected $browser;
 
+    /**
+     * @param string  $clientId
+     * @param string  $clientSecret
+     * @param string  $tokenUrl
+     * @param Browser $browser
+     */
     public function __construct(
         $clientId,
         $clientSecret,
@@ -40,6 +51,11 @@ class TokenFactory
         $this->tokenConfig = clone $this->originalTokenConfig;
     }
 
+    /**
+     * @param string $clientId
+     *
+     * @return $this
+     */
     public function withClientId($clientId)
     {
         $this->tokenConfig->clientId = $clientId;
@@ -47,6 +63,11 @@ class TokenFactory
         return $this;
     }
 
+    /**
+     * @param string $clientSecret
+     *
+     * @return $this
+     */
     public function withClientSecret($clientSecret)
     {
         $this->tokenConfig->clientSecret = $clientSecret;
@@ -54,6 +75,11 @@ class TokenFactory
         return $this;
     }
 
+    /**
+     * @param string $tokenUrl
+     *
+     * @return $this
+     */
     public function withTokenUrl($tokenUrl)
     {
         $this->tokenConfig->tokenUrl = $tokenUrl;
@@ -61,11 +87,17 @@ class TokenFactory
         return $this;
     }
 
+    /**
+     * Reset
+     */
     public function reset()
     {
         $this->tokenConfig = clone $this->originalTokenConfig;
     }
 
+    /**
+     * @return Token
+     */
     public function create()
     {
         $token = new Token(

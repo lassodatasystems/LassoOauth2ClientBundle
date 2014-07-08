@@ -5,6 +5,7 @@ use Buzz\Browser;
 
 /**
  * Class Token
+ *
  * @package Lasso\Oauth2ClientBundle
  */
 class Token
@@ -52,7 +53,6 @@ class Token
     }
 
     /**
-     *
      * @return string
      */
     protected function acquireToken()

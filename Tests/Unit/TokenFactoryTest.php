@@ -8,6 +8,11 @@ use PHPUnit_Framework_TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use StdClass;
 
+/**
+ * Class TokenFactoryTest
+ *
+ * @package Lasso\Oauth2ClientBundle\Tests
+ */
 class TokenFactoryTest extends PHPUnit_Framework_TestCase
 {
     /**

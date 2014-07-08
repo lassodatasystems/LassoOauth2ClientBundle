@@ -7,6 +7,11 @@ use Lasso\Oauth2ClientBundle\Client;
 use Lasso\Oauth2ClientBundle\Exceptions\ServerErrorException;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class ClientTest
+ *
+ * @package Lasso\Oauth2ClientBundle\Tests\Unit
+ */
 class ClientTest extends PHPUnit_Framework_TestCase
 {
     protected $token;

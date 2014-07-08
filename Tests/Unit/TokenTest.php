@@ -6,6 +6,11 @@ use PHPUnit_Framework_MockObject_MockObject;
 
 require dirname(__FILE__) . '/../../Token.php';
 
+/**
+ * Class TokenTest
+ *
+ * @package Lasso\Oauth2ClientBundle
+ */
 class TokenTest extends PHPUnit_Framework_TestCase
 {
     /**
